@@ -1,5 +1,5 @@
 (ns datomic-schema-grapher.database
-  (:require [datomic.api :as d]))
+  (:require [datomic.client.api :as d]))
 
 (defn datomic-attribute?
   [identifier]
@@ -43,4 +43,3 @@
                        (repeat (name (:db/cardinality ref-attr)))))
          flatten
          (partition 3))))
-
