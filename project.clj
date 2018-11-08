@@ -8,6 +8,7 @@
   :profiles {:dev {:dependencies [[org.clojure/clojure "1.5.1"]
                                   ;; user must provide her own datomic
                                   ;; for on-prem: [com.datomic/client-pro "0.8.20"]
-                                  ;; for cloud: [com.datomic/client-cloud "0.8.63"]]}}
+                                  ;; for cloud: [com.datomic/client-cloud "0.8.63"]
+                                  ]}}
   :jvm-opts ["-Xmx1g"]
   :eval-in-leiningen true)
