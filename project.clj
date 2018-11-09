@@ -1,4 +1,4 @@
-(defproject org.clojars.defng/datomic-schema-grapher "0.1.1"
+(defproject org.clojars.defng/datomic-schema-grapher "0.1.2"
   :description "Adds ability to use datomic-schema-grapher with Datomic Cloud."
   :url "https://github.com/andrerichards/datomic_schema_grapher"
   :license {:name "MIT License"
