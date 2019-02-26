@@ -1,7 +1,9 @@
 # datomic-schema-grapher
 
-Changes https://github.com/felixflores/datomic_schema_grapher to use datomic.client.api instead of datomic.api
-
+```
+This fork changes https://github.com/felixflores/datomic_schema_grapher to use datomic.client.api instead of datomic.api
+This makes it work with Datomic Cloud.
+```
 
 Visually see the datomic schema. Uses graphviz.
 
