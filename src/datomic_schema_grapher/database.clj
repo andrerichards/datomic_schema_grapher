@@ -35,11 +35,11 @@
 (defn references
   [database]
   (let [ref-attrs (->> (schema database)
-                       (group-by :db/valueType)
+                       (group-by #(-> % :db/valueType :db/ident))
                        :db.type/ref)]
     (->> (for [ref-attr ref-attrs]
            (interleave (repeat (:db/ident ref-attr))
                        (ref-entities (:db/ident ref-attr) database)
-                       (repeat (name (:db/cardinality ref-attr)))))
+                       (repeat (name (-> ref-attr :db/cardinality :db/ident)))))
          flatten
          (partition 3))))

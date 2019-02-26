@@ -9,3 +9,5 @@ pom.xml.asc
 /.nrepl-port
 tags
 resources/dev-transactor.properties
+.idea/*
+*.iml

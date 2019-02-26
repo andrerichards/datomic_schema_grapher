@@ -1,5 +1,8 @@
 # datomic-schema-grapher
 
+Changes https://github.com/felixflores/datomic_schema_grapher to use datomic.client.api instead of datomic.api
+
+
 Visually see the datomic schema. Uses graphviz.
 
 ![alt tag](https://raw.github.com/felixflores/datomic_schema_grapher/master/example/sample.png)
