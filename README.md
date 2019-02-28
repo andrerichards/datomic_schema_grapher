@@ -44,12 +44,12 @@ lein deps
 ;; pops up a swing UI
 ```
 
-### Local mem-db
+### Local memdb
 
 Also add to your `:dependencies`
 
 ```clojure
-[datomic-client-memdb "0.2.0"]
+[datomic-client-memdb "0.2.1"]
 ```
 
 Then
@@ -62,7 +62,7 @@ Then
 (def client (compute.datomic-client-memdb.core/client {}))
 
 (d/create-database client {:db-name "your-db-name"}) ; create db
-(def conn (d/connect (get-client) {:db-name "your-db-name"}))
+(def conn (d/connect client {:db-name "your-db-name"}))
 (d/transact conn {:tx-data [#_"add your schema and data here"]})  
 (def db (d/db conn))
 
