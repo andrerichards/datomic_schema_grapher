@@ -15,7 +15,7 @@ Visually see the datomic schema. Uses graphviz.
 Add to your `:dependencies`
 
 ```clojure
-[defng/datomic-schema-grapher "0.2.0"]
+[defng/datomic-schema-grapher "0.2.2"]
 ```
 
 If you want to use the lein plugin you must also add the dependency to your project's :plugins vector.
@@ -49,7 +49,7 @@ lein deps
 Also add to your `:dependencies`
 
 ```clojure
-[datomic-client-memdb "0.2.1"]
+[datomic-client-memdb "0.2.0"]
 ```
 
 Then
