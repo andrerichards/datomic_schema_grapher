@@ -15,7 +15,12 @@
               [?attr :db/ident ?name]]
             database)
        (remove #(datomic-attribute? (last %)))
-       (map #(d/pull database '[*] (first %)))))
+       (map #(d/pull database '[:db/id
+                                :db/ident
+                                {:db/valueType [:db/ident]}
+                                {:db/cardinality [:db/ident]}
+                                {:db/unique [:db/ident]}
+                                :schema/deprecated] (first %)))))
 
 (defn ref-entities
   "Returns all entities the references a given datomic attribute."

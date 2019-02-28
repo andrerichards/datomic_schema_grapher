@@ -12,18 +12,26 @@
 
 (defn is-a-ref?
   [attr]
-  (= (:db/valueType attr) :db.type/ref))
+  (= (-> attr :db/valueType :db/ident) :db.type/ref))
 
 (defn is-unique?
   [attr]
-  (= (:db/unique attr) :db.unique/identity))
+  (= (-> attr :db/unique :db/ident) :db.unique/identity))
+
+(defn is-deprecated?
+  [attr]
+  (:schema/deprecated attr))
 
 (defn attr-row-label
   [attribute]
-  (let [label (str (name (:db/ident attribute)) " : " (name (:db/valueType attribute)))]
-    (if (is-unique? attribute)
-      (html [:font {:color "red"} label])
-      label)))
+  (let [label (str (name (:db/ident attribute)) " : " (name (-> attribute :db/valueType :db/ident)))]
+    (html  [:font
+            {:color (if (is-deprecated? attribute)
+                      "gray"
+                      (if (is-unique? attribute)
+                        "red"
+                        "black"))}
+            label])))
 
 (defn node-label
   [attributes]
