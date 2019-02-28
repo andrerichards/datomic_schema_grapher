@@ -2,6 +2,7 @@
 
 ```
 This fork changes https://github.com/felixflores/datomic_schema_grapher to use datomic.client.api instead of datomic.api
+
 This makes it work with Datomic Cloud.
 ```
 
@@ -26,19 +27,56 @@ lein deps
 
 ## REPL Usage
 
+### Datomic Cloud
+
 ```clojure
+(require '[datomic.client.api :as d])
 (require '[datomic-schema-grapher.core :refer (graph-datomic)])
-(graph-datomic "datomic:mem://example")
+
+(def db (-> (d/client {:server-type :ion
+                       :region      "your-region"
+                       :system      "your-system"
+                       :endpoint    "your-endpoint"
+                       :proxy-port  8182 #_your-proxy-port})
+            (d/connect {:db-name "your-db-name"})
+            (d/db)))
+(graph-datomic db)
+;; pops up a swing UI
+```
+
+### Local mem-db
+
+Also add to your `:dependencies`
+
+```clojure
+[datomic-client-memdb "0.2.0"]
+```
+
+Then
+
+```clojure
+(require '[datomic.client.api :as d])
+(require '[compute.datomic-client-memdb.core])
+(require '[datomic-schema-grapher.core :refer (graph-datomic)])
+
+(def client (compute.datomic-client-memdb.core/client {}))
+
+(d/create-database client {:db-name "your-db-name"}) ; create db
+(def conn (d/connect (get-client) {:db-name "your-db-name"}))
+(d/transact conn {:tx-data [#_"add your schema and data here"]})  
+(def db (d/db conn))
+
+(graph-datomic db)
 ;; pops up a swing UI
 ```
 
 ```clojure
-(graph-datomic "datomic:mem://example" :save-as "the-schema.dot")
+(graph-datomic db :save-as "the-schema.dot")
 ;; writes graphviz to file and pops up swing UI
 ```
 
 ```clojure
-(graph-datomic "datomic:mem://example" :save-as "the-schema.dot" :no-display true)
+(graph-datomic db :save-as "the-schema.dot" :no-display true)
 ;; does not pop up a display
 ```
 
